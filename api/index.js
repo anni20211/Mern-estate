@@ -32,7 +32,7 @@ app.use("/api/listing",listingRouter);
 
 app.use(express.static(path.join(__dirname,"/client/dist")));
 app.use("*",(req,res)=>{
-    res.sendFile(path.json(__dirname,"client","dist","index.html"))
+    res.sendFile(path.join(__dirname,"client","dist","index.html"))
 })
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode||500;
