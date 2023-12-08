@@ -24,10 +24,15 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
+app.use((req, res, next) => {
+    console.log("Requested:", req.url);
+    next();
+  });
 
 app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use("*", (req, res) => {
+    console.log("Fallback:", req.url);
   res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 app.use((err, req, res, next) => {
