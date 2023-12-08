@@ -1,5 +1,5 @@
 import express from "express";
-import { mongoose } from "mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -20,12 +20,12 @@ mongoose
     console.log(err);
   });
 
-app.use(express.static(path.join(__dirname, "client/dist")));
 app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
+app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist/index.html"));
